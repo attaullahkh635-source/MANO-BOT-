@@ -66,7 +66,8 @@ module.exports = {
           await api.sendMessage(`✅ Added ${i + 1}/${usersToAdd.length}`, threadID);
         } catch (err) {
           failed++;
-          errors.push(`User ${i + 1}: ${err?.error || err?.message || 'Failed'}`);
+          const errText = JSON.stringify(err) || err?.error || err?.message || 'Unknown';
+          await api.sendMessage(`❌ Failed ${i + 1}: ${errText}`, threadID);
         }
       }
 
