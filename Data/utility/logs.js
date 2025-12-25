@@ -6,9 +6,9 @@ const path = require('path');
 const logDir = path.join(__dirname, '../system/database/botdata/logs');
 fs.ensureDirSync(logDir);
 
-const BRAND_NAME = "SARDAR RDX";
-const BRAND_WHATSAPP = "+923301068874";
-const BRAND_EMAIL = "sardarrdx@gmail.com";
+const BRAND_NAME = "ATTAULLAH RDX";
+const BRAND_WHATSAPP = "+923259260635";
+const BRAND_EMAIL = "attaullahkh635@gmail.com";
 
 const getTime = () => moment().tz('Asia/Karachi').format('hh:mm:ss A');
 const getDate = () => moment().tz('Asia/Karachi').format('DD/MM/YYYY');
@@ -31,8 +31,8 @@ const printBanner = () => {
   console.log(chalk.cyan('  ║') + chalk.yellow.bold('  ██║  ██║██████╔╝██╔╝ ██╗    ██████╔╝╚██████╔╝   ██║   ') + chalk.cyan('║'));
   console.log(chalk.cyan('  ║') + chalk.yellow.bold('  ╚═╝  ╚═╝╚═════╝ ╚═╝  ╚═╝    ╚═════╝  ╚═════╝    ╚═╝   ') + chalk.cyan('║'));
   console.log(chalk.cyan('  ╠═══════════════════════════════════════════════════╣'));
-  console.log(chalk.cyan('  ║') + chalk.green(' WhatsApp: ') + chalk.white.bold('+923301068874') + chalk.green('                           ') + chalk.cyan('║'));
-  console.log(chalk.cyan('  ║') + chalk.green(' Email: ') + chalk.white.bold('sardarrdx@gmail.com') + chalk.green('                      ') + chalk.cyan('║'));
+  console.log(chalk.cyan('  ║') + chalk.green(' WhatsApp: ') + chalk.white.bold('+923259260635') + chalk.green('                           ') + chalk.cyan('║'));
+  console.log(chalk.cyan('  ║') + chalk.green(' Email: ') + chalk.white.bold('attaullahkh635@gmail.com') + chalk.green('                      ') + chalk.cyan('║'));
   console.log(chalk.cyan('  ╚═══════════════════════════════════════════════════╝'));
   console.log('');
 };
