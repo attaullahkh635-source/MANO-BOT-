@@ -15,7 +15,7 @@ module.exports.config = {
 
 const cacheDir = path.join(__dirname, "cache");
 
-const maleNames = ["ali", "ahmed", "muhammad", "hassan", "hussain", "sardar", "rdx", "usman", "bilal", "hamza", "asad", "zain", "fahad", "faisal", "imran", "kamran", "adnan", "arslan", "waqas", "waseem", "irfan", "junaid", "khalid", "nadeem", "naveed", "omer", "qasim", "rizwan", "sajid", "salman", "shahid", "tariq", "umar", "yasir", "zahid"];
+const maleNames = ["ali", "ahmed", "muhammad", "hassan", "hussain", "Atta", "Attaullah", "usman", "Sindhi", "hamza", "asad", "zain", "fahad", "faisal", "imran", "kamran", "adnan", "arslan", "waqas", "waseem", "irfan", "junaid", "khalid", "nadeem", "naveed", "omer", "qasim", "rizwan", "sajid", "salman", "shahid", "tariq", "umar", "yasir", "zahid"];
 const femaleNames = ["fatima", "ayesha", "maria", "sana", "hira", "zara", "maryam", "khadija", "sara", "amina", "bushra", "farah", "iqra", "javeria", "kinza", "laiba", "maham", "nadia", "rabia", "saima", "tahira", "uzma", "zainab", "anam", "asma", "dua", "esha", "fiza", "huma", "iram"];
 
 function detectGender(name) {
@@ -178,7 +178,7 @@ module.exports.run = async function({ api, event, Users }) {
     var msg = {
       body: `┏━•❃°•°❀°•°❃•━┓
 
-𝐎𝐰𝐧𝐞𝐫 ·˚ ༘₊·꒰➳: ̗̀➛ 🍓 𝐒𝐀𝐑𝐃𝐀𝐑 𝐑𝐃𝐗
+𝐎𝐰𝐧𝐞𝐫 ·˚ ༘₊·꒰➳: ̗̀➛ 🍓 𝐀𝐓𝐓𝐀𝐔𝐋𝐋𝐀𝐇 𝐑𝐃𝐗
 
 ┗━•❃°•°❀°•°❃•━┛ 
 
