@@ -124,7 +124,7 @@ function loadConfig() {
   } catch (error) {
     logs.error('CONFIG', 'Failed to load config:', error.message);
     config = {
-      BOTNAME: 'AK RDX',
+      BOTNAME: 'MANO RDX',
       PREFIX: '.',
       ADMINBOT: ['100002392368552'],
       TIMEZONE: 'Asia/Karachi',
