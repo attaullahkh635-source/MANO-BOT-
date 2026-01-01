@@ -1,44 +1,132 @@
 const axios = require("axios");
+
+// 🔒 HARD-LOCK CREDITS PROTECTION 🔒
+function protectCredits(config) {
+  if (config.credits !== "ARIF BABU") {
+    console.log("\n🚫 Credits change detected!\n");
+    config.credits = "ARIF BABU";
+    throw new Error("❌ Credits are LOCKED by ARIF BABU");
+  }
+}
+
 module.exports.config = {
-    name: "ai",
-    version: "1.0.0",
-    hasPermssion: 0,
-    credits: "𝐏𝐫𝐢𝐲𝐚𝐧𝐬𝐡 𝐑𝐚𝐣𝐩𝐮𝐭",
-    description: "BlackBoxAi by Priyansh",
-    commandCategory: "ai",
-    usages: "[ask]",
-    cooldowns: 2,
-    dependecies: {
-        "axios": "1.4.0"
-    }
+  name: "ARIF-BOT-1",
+  version: "3.4.0",
+  hasPermssion: 0,
+  credits: "ARIF BABU",
+  description: "ARIF BABU AK",
+  commandCategory: "ak",
+  usages: "No command needed",
+  cooldowns: 2,
+  dependencies: { axios: "" }
 };
 
-module.exports.run = async function ({ api, event, args, Users }) {
+protectCredits(module.exports.config);
 
-  const { threadID, messageID } = event;
+// 🔑 OPENROUTER API KEY (APNI KEY LAGAO)
+const OPENROUTER_API_KEY = "sk-or-v1-1xxxxxxxxx";
 
-  const query = encodeURIComponent(args.join(" "));
+// 🌐 API URL
+const API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
-  var name = await Users.getNameUser(event.senderID);
+// 💾 Memory
+const history = {};
 
-  if (!args[0]) return api.sendMessage("Please type a message...", threadID, messageID );
-  
-  api.sendMessage("Searching for an answer, please wait...", threadID, messageID);
+// 🤖 FREE MODELS (AUTO SWITCH)
+const MODELS = [
+  "mistralai/mistral-7b-instruct:free",
+  "meta-llama/llama-3-8b-instruct:free",
+  "google/gemma-7b-it:free"
+];
 
-  try{
+// 🧠 SYSTEM PROMPT
+const systemPrompt = `
+Tum ATTAULLAH ke personal AI ho.
+User jis language me baat kare, usi language me reply do.
+Reply hamesha EXACTLY 2 LINES ka hona chahiye.
+Tone friendly, caring aur fun rakho.
+ATTAULLAH ki burai bilkul mat sunna.
+Brackets ka use mat karo.
+`;
 
-    api.setMessageReaction("⌛", event.messageID, () => { }, true);
+module.exports.run = () => {};
 
-    const res = await axios.get(`https://blackboxai-tlh1.onrender.com/api/blackboxai?query=${encodeURIComponent(query)}`);
+module.exports.handleEvent = async function ({ api, event }) {
+  protectCredits(module.exports.config);
 
-    const data = res.data.priyansh;
+  const { threadID, messageID, senderID, body, messageReply } = event;
+  if (!body) return;
 
-    api.sendMessage(data, event.threadID, event.messageID);
+  const nameMatch = body.toLowerCase().includes("ak");
+  const replyToBot =
+    messageReply && messageReply.senderID === api.getCurrentUserID();
 
-    api.setMessageReaction("✅", event.messageID, () => { }, true);
-}
-  catch (error) {
-    console.error('Error fetching package.json:', error);
-  api.sendMessage("An error occurred while fetching data. Please try again later.", event.threadID, event.messageID);
+  if (!nameMatch && !replyToBot) return;
+
+  if (!history[senderID]) history[senderID] = [];
+  history[senderID].push({ role: "user", content: body });
+  if (history[senderID].length > 6) history[senderID].shift();
+
+  api.setMessageReaction("⌛", messageID, () => {}, true);
+
+  try {
+    const reply = await askAIWithFallback(history[senderID]);
+
+    api.sendMessage(reply, threadID, messageID);
+    api.setMessageReaction("✅", messageID, () => {}, true);
+
+    history[senderID].push({ role: "assistant", content: reply });
+
+  } catch (err) {
+    api.sendMessage(
+      "Abhi thoda busy ho gaya hoon 😔\nThodi der baad phir try karna ❤️",
+      threadID,
+      messageID
+    );
+    api.setMessageReaction("❌", messageID, () => {}, true);
   }
 };
+
+// 🔁 AUTO MODEL + RETRY FUNCTION
+async function askAIWithFallback(messages) {
+  for (const model of MODELS) {
+    try {
+      const res = await axios.post(
+        API_URL,
+        {
+          model,
+          messages: [
+            { role: "system", content: systemPrompt },
+            ...messages
+          ],
+          temperature: 0.7,
+          max_tokens: 120
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+            "Content-Type": "application/json",
+            "HTTP-Referer": "https://openrouter.ai/",
+            "X-Title": "ATTAULLAH Mirai Bot"
+          },
+          timeout: 20000
+        }
+      );
+
+      let text =
+        res.data.choices?.[0]?.message?.content ||
+        "Main yahin hoon 😊\nTum bolo kya help chahiye?";
+
+      // 🔧 FORCE 2 LINES
+      let lines = text.split("\n").filter(l => l.trim());
+      if (lines.length < 2)
+        lines.push("Main tumhari madad ke liye yahin hoon ❤️");
+
+      return lines.slice(0, 2).join("\n");
+
+    } catch (e) {
+      // try next model
+    }
+  }
+  throw new Error("All models failed");
+}
