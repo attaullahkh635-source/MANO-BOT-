@@ -35,7 +35,7 @@ module.exports.run = async function({ api, event }) {
         
 ╭━━━〔 🕊️ BOT INFORMATION 🕊️ 〕━━━╮
 ┃
-┃ 💎 𝘽𝙤𝙩 𝙉𝙖𝙢𝙚: ✦ 𝗦𝗜𝗡𝗗𝗛𝗜 𝐁𝐎𝐓 ✦
+┃ 💎 𝘽𝙤𝙩 𝙉𝙖𝙢𝙚: ✦ 𝐀𝐊 𝐁𝐎𝐓 ✦
 ┃ 🍒 𝙋𝙧𝙚𝙛𝙞𝙭: ${global.config.PREFIX}
 ┃ 👑 𝙊𝙬𝙣𝙚𝙧: ☆》『⸙』𝗔𝗧𝗧𝗔𝗨𝗟𝗟𝗔𝗛 𝗞𝗛𝗨𝗛𝗔𝗥𝗢『⸙』《☆
 ┃
@@ -65,12 +65,12 @@ module.exports.run = async function({ api, event }) {
 💝 OWNER DETAILS  
 ━━━━━━━━━━━━━━━━━━━━━━━  
 👑 Name: ☆》『⸙』𝗔𝗧𝗧𝗔𝗨𝗟𝗟𝗔𝗛 𝗞𝗛𝗨𝗛𝗔𝗥𝗢『⸙』《☆  
-🖤 Nick: 𝗔𝗧𝗧𝗔   
-📘 Facebook: www.facebook.com/attaullah.sindhi.com639  
+🖤 Nick: 𝐌𝐀𝐍𝐎   
+📘 Facebook: www.facebook.com/khuharo  
 ✈️ Telegram: @attaullah.sindhi.com
 
 ━━━━━━━━━━━━━━━━━━━━━━━
-🌸 ••• 𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮 𝐅𝐨𝐫 𝐔𝐬𝐢𝐧𝐠 𝐑𝐃𝐗 𝐁𝐨𝐭 ••• 🌸
+🌸 ••• 𝐓𝐡𝐚𝐧𝐤 𝐘𝐨𝐮 𝐅𝐨𝐫 𝐔𝐬𝐢𝐧𝐠 𝐀𝐊 𝐁𝐨𝐭 ••• 🌸
 ━━━━━━━━━━━━━━━━━━━━━━━
 
 `, attachment: fs.createReadStream(__dirname + "/cache/botjoin.mp4")} ,threadID));
@@ -94,7 +94,7 @@ module.exports.run = async function({ api, event }) {
             }
             memLength.sort((a, b) => a - b);
             
-           (typeof threadData.customJoin == "undefined") ? msg = "✨ Hello Mr/Miss {name} ✨\n━━━━━━━━━━━━━━━━━━\n🎉 You are the {soThanhVien}ᵗʰ member of our lovely group ➤ {threadName}\n━━━━━━━━━━━━━━━━━━\n💌 Please enjoy your stay here!\n🤝 Make new friends and share happiness\n━━━━━━━━━━━━━━━━━━\n🔐 Trust me, this place is full of fun 🌸\n━━━━━━━━━━━━━━━━━━\n\n👑 My Owner → ☆》『⸙』𓆩𝐈ʈ̊͜͡𝐱'عـَـ̽ـ͜ــطَــ֒اءُالـلّٰـــہْ٘ 𝐉͢ɑ̄̄͜ŋ̽『⸙』《☆\n❤️ Always spreading love & positive vibes ❤️" : msg = threadData.customJoin;
+           (typeof threadData.customJoin == "undefined") ? msg = "✨ Hello Mr/Miss {name} ✨\n━━━━━━━━━━━━━━━━━━\n🎉 You are the {soThanhVien}ᵗʰ member of our lovely group ➤ {threadName}\n━━━━━━━━━━━━━━━━━━\n💌 Please enjoy your stay here!\n🤝 Make new friends and share happiness\n━━━━━━━━━━━━━━━━━━\n🔐 Trust me, this place is full of fun 🌸\n━━━━━━━━━━━━━━━━━━\n\n👑 My Owner → ☆》『⸙』𝐀𝐓𝐓𝐀𝐔𝐋𝐋𝐀𝐇『⸙』《☆\n❤️ Always spreading love & positive vibes ❤️" : msg = threadData.customJoin;
             msg = msg
             .replace(/\{name}/g, nameArray.join(', '))
             .replace(/\{type}/g, (memLength.length > 1) ?  'Friends' : 'Friend')
@@ -115,4 +115,5 @@ module.exports.run = async function({ api, event }) {
             return api.sendMessage(formPush, threadID);
         } catch (e) { return console.log(e) };
     }
+
               }
